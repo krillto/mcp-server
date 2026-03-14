@@ -1,0 +1,268 @@
+{
+  "payload": {
+    "type": "hosted",
+    "stateful": false,
+    "hasAuthAdapter": false,
+    "serverCard": {
+      "serverInfo": {
+        "name": "krill",
+        "version": "0.1.0"
+      },
+      "tools": [
+        {
+          "name": "search_bookmarks",
+          "description": "Search your saved Twitter/X bookmarks by keyword, topic, or author. Uses full-text and semantic search.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "description": "Search query (keywords, author name, topic)",
+                "type": "string"
+              },
+              "category": {
+                "description": "Filter by category",
+                "type": "string",
+                "enum": [
+                  "tech",
+                  "ai",
+                  "business",
+                  "design",
+                  "productivity",
+                  "philosophy",
+                  "finance",
+                  "health",
+                  "other"
+                ]
+              },
+              "limit": {
+                "description": "Max results (default 20)",
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "offset": {
+                "description": "Pagination offset",
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "ask_bookmarks",
+          "description": "Ask a question about your bookmarks. Uses AI to find relevant saved tweets and answer based on them.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "string",
+                "description": "Your question about your saved bookmarks"
+              }
+            },
+            "required": [
+              "question"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "list_collections",
+          "description": "List all your bookmark collections (like playlists for tweets).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_collection_bookmarks",
+          "description": "Get all bookmarks in a specific collection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "collection_id": {
+                "type": "string",
+                "description": "The collection ID"
+              }
+            },
+            "required": [
+              "collection_id"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "create_collection",
+          "description": "Create a new bookmark collection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Collection name"
+              },
+              "description": {
+                "description": "Collection description",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "add_to_collection",
+          "description": "Add a bookmark to a collection.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "collection_id": {
+                "type": "string",
+                "description": "The collection ID"
+              },
+              "bookmark_id": {
+                "type": "string",
+                "description": "The bookmark/tweet ID to add"
+              }
+            },
+            "required": [
+              "collection_id",
+              "bookmark_id"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "update_bookmark",
+          "description": "Update a bookmark's category or tags.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "bookmark_id": {
+                "type": "string",
+                "description": "The bookmark/tweet ID"
+              },
+              "category": {
+                "description": "New category",
+                "type": "string",
+                "enum": [
+                  "tech",
+                  "ai",
+                  "business",
+                  "design",
+                  "productivity",
+                  "philosophy",
+                  "finance",
+                  "health",
+                  "other"
+                ]
+              },
+              "tags": {
+                "description": "New tags",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "bookmark_id"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "add_notes",
+          "description": "Add or update personal notes on a bookmark.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "bookmark_id": {
+                "type": "string",
+                "description": "The bookmark/tweet ID"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Your notes about this bookmark"
+              }
+            },
+            "required": [
+              "bookmark_id",
+              "notes"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "get_highlights",
+          "description": "Get all your highlighted passages from bookmarks.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        },
+        {
+          "name": "delete_bookmark",
+          "description": "Delete a bookmark permanently.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "bookmark_id": {
+                "type": "string",
+                "description": "The bookmark/tweet ID to delete"
+              }
+            },
+            "required": [
+              "bookmark_id"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "execution": {
+            "taskSupport": "forbidden"
+          }
+        }
+      ],
+      "resources": [],
+      "prompts": []
+    },
+    "source": {
+      "commit": "393b997ee0600387888aa69cd3cde40ac1f1fc6d",
+      "branch": "main"
+    }
+  },
+  "artifacts": {
+    "module": "module.js",
+    "sourcemap": "module.js.map"
+  }
+}
