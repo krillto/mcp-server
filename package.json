@@ -1,0 +1,34 @@
+{
+  "name": "@krillto/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for krill.to — search and manage your Twitter/X bookmarks from any AI agent",
+  "keywords": [
+    "mcp",
+    "krill",
+    "twitter",
+    "bookmarks",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "krill-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}
