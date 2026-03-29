@@ -10,7 +10,7 @@ import { KrillClient } from "./krill-client.js";
 export function createServer(config: { apiKey: string; baseUrl?: string }) {
   const client = new KrillClient({
     apiKey: config.apiKey,
-    baseUrl: config.baseUrl || "https://krill.to",
+    baseUrl: config.baseUrl || "https://www.krill.to",
   });
 
   const server = new McpServer({
